@@ -7,7 +7,7 @@
 >“What about side by side with a friend?”\
 > -- <cite>Legolas</cite>
 
-Welcome to Fraternal Forge Studios. This studio was born out of boredem with the status quo when replaying the games we loved over and over again. So we are trying our hands at making mods.
+Welcome to Fraternal Forge Studios. This studio was born out of boredom with the status quo when replaying the games we loved over and over again. So we are trying our hands at making mods.
 
 # Mods/Addons
 
