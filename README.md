@@ -1,5 +1,4 @@
-![Fraternal Forge Logo](/docs/fraternal-forge-logo.png)
-<img src="/docs/fraternal-forge-logo.png" width="80" >
+<img src="/docs/fraternal-forge-logo.png" width="200" >
 
 # Fraternal Forge Studios
 
