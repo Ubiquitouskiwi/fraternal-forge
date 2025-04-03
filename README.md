@@ -1,4 +1,6 @@
-<img src="/docs/fraternal-forge-logo.png" width="500" >
+<p align="center">
+    <img src="/docs/fraternal-forge-logo.png" width="500" >
+</p>
 
 # Fraternal Forge Studios
 
