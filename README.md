@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="/docs/fraternal-forge-logo.png" width="500" >
+    <img src="/_docs/fraternal-forge-logo.png" width="500" >
 </p>
 
 # Fraternal Forge Studios
