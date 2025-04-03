@@ -11,7 +11,7 @@ Welcome to Fraternal Forge Studios. This studio was born out of boredom with the
 
 # Mods/Addons
 
-These are the Mods/Addons we have ideas for or are actively working on. This list will grow with time and as our skill grow.
+These are the Mods/Addons we have ideas for or are actively working on. This list will grow with time and as our skill grow and our interests shift.
 
 ## Minecraft
 
