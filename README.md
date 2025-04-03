@@ -4,10 +4,10 @@
 
 # Fraternal Forge Studios
 
-Welcome to Fraternal Forge Studios. This studio was born out of bordem with the status quo when replaying the games we loved over and over again. So we are trying our hands at making mods.
-
 >“What about side by side with a friend?”\
 > -- <cite>Legolas</cite>
+
+Welcome to Fraternal Forge Studios. This studio was born out of bordem with the status quo when replaying the games we loved over and over again. So we are trying our hands at making mods.
 
 # Mods/Addons
 
