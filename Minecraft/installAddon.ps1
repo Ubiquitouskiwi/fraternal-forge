@@ -39,5 +39,5 @@ $projectInstallBehaviorPath = Join-Path -Path $minecraftFolder -ChildPath (Join-
 
 # Check if addon already installed in mincraft install folder
 
-Copy-Item -Path (Join-Path -Path $projectLocalPath -ChildPath (Join-Path -Path "resource_pack" -ChildPath "*")) -Destination (Join-Path -Path $projectInstallResourcePath -ChildPath "$($project)_resource_pack") -Recurse
-Copy-Item -Path (Join-Path -Path $projectLocalPath -ChildPath (Join-Path -Path "resource_pack" -ChildPath "*")) -Destination (Join-Path -Path $projectInstallBehaviorPath -ChildPath "$($project)_resource_pack") -Recurse
+Copy-Item -Path (Join-Path -Path $projectLocalPath -ChildPath (Join-Path -Path "resource_pack" -ChildPath "*")) -Destination (Join-Path -Path $projectInstallResourcePath -ChildPath "$($project)_resource_pack") -Recurse -Force
+Copy-Item -Path (Join-Path -Path $projectLocalPath -ChildPath (Join-Path -Path "resource_pack" -ChildPath "*")) -Destination (Join-Path -Path $projectInstallBehaviorPath -ChildPath "$($project)_resource_pack") -Recurse -Force

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@minecraft/creator-tools": "^0.10.0"
+  }
+}
