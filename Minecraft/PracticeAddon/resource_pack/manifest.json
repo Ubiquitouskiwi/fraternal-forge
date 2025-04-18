@@ -1,0 +1,30 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "Fraternal Forge Practice Addon",
+        "name": "Practice Resource Pack",
+        "uuid": "59a765af-9756-436d-bcf4-bc8989e3ff0c",
+        "version": [
+            1,
+            0,
+            0
+        ],
+        "min_engine_version": [
+            1,
+            16,
+            0
+        ]
+    },
+    "modules": [
+        {
+            "description": "My First Add-On!",
+            "type": "resources",
+            "uuid": "33af0dbb-d13b-4866-9a3d-da08d0c1838d",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ]
+}
