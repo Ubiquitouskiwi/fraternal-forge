@@ -1,9 +1,9 @@
 {
   "format_version": 2,
   "header": {
-    "name": "test",
-    "description": "test",
-    "uuid": "4bb11a9b-f712-47f9-9cec-ec930c468991",
+    "name": "Practice Addon",
+    "description": "Addon that has no particular purpose or direction. Just houses our experiments and testing.",
+    "uuid": "9ecae8a3-80b6-4f2b-8ddf-c9b0345de9c9",
     "version": [
       1,
       0,
@@ -17,9 +17,9 @@
   },
   "modules": [
     {
-      "description": "My Resource Pack",
+      "description": "Add-on Pack Resources",
       "type": "resources",
-      "uuid": "799ad537-4714-43c0-b1d6-d4b73165cf69",
+      "uuid": "b891dc47-a7bd-42a2-aa58-2bed58bf5be9",
       "version": [
         1,
         0,
@@ -29,7 +29,7 @@
   ],
   "dependencies": [
     {
-      "uuid": "e51afe01-050f-4d87-8f89-02e771f95d3d",
+      "uuid": "03ea6a07-8896-4e29-8288-0b4a716bf7db",
       "version": [
         1,
         0,
