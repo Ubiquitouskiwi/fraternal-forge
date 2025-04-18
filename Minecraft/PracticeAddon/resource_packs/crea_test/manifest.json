@@ -1,0 +1,47 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "test",
+    "description": "test",
+    "uuid": "4bb11a9b-f712-47f9-9cec-ec930c468991",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      70
+    ]
+  },
+  "modules": [
+    {
+      "description": "My Resource Pack",
+      "type": "resources",
+      "uuid": "799ad537-4714-43c0-b1d6-d4b73165cf69",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "e51afe01-050f-4d87-8f89-02e771f95d3d",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_with": {
+      "mctoolscli": [
+        "0.10.0"
+      ]
+    }
+  }
+}

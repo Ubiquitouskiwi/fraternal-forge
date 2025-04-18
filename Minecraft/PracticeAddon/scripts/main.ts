@@ -1,10 +1,11 @@
 import { world, system } from "@minecraft/server";
 
 function mainTick() {
+  if (system.currentTick % 100 === 0) {
+    world.sendMessage("Hello starter! Tick: " + system.currentTick);
+  }
 
-  // add main loop code here.
   system.run(mainTick);
 }
 
-// Uncomment the line below to ensure your main tick code is called from the start.
-// system.run(mainTick);
+system.run(mainTick);

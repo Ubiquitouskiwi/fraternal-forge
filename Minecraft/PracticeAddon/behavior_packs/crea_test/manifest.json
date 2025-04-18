@@ -1,0 +1,57 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "test",
+    "description": "test",
+    "uuid": "e51afe01-050f-4d87-8f89-02e771f95d3d",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      70
+    ]
+  },
+  "modules": [
+    {
+      "description": "Script resources",
+      "language": "javascript",
+      "type": "script",
+      "uuid": "aa1e81ca-fcd0-4eaf-9570-24506c31d08a",
+      "version": [
+        1,
+        0,
+        0
+      ],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": [
+        1,
+        18,
+        0
+      ]
+    },
+    {
+      "uuid": "4bb11a9b-f712-47f9-9cec-ec930c468991",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_with": {
+      "mctoolscli": [
+        "0.10.0"
+      ]
+    }
+  }
+}
