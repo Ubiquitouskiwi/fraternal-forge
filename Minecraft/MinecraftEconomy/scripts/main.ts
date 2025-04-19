@@ -43,7 +43,6 @@ function scanInventories() {
       }
     }
     world.sendMessage(`Total Blocks found so far. ${JSON.stringify(knownBlocks, null, 4)}`);
-    world.afterEvents.bl
   }
 }
 
