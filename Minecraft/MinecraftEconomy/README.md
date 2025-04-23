@@ -3,7 +3,7 @@ This addon adds an economy for blocks to minecraft.
 It adds a market to buy and sell blocks based on availability of blocks in the world.
 
 ## Development Setup
----
+
 ### Install Node.js, if you haven't already
 
 We're going to use the Node Package Manager (or NPM) to get more tools to make the process of building our project easier.
@@ -17,7 +17,7 @@ Download the version with "LTS" next to the number and install it. (LTS stands f
 Visit the [Visual Studio Code website](https://code.visualstudio.com) and install Visual Studio Code.
 
 ## Getting Started
----
+
 1. Clone current project with git. This will get you all mods by Fraternal Forge
 ```
 git clone https://github.com/Ubiquitouskiwi/fraternal-forge.git
@@ -33,7 +33,7 @@ npm i
 4. Open project up with Visual Studio Code
 
 ## Testing
----
+
 
 To get started, go into PowerShell and navigate to your **fraternal-forge/Minecraft/MinecraftEconomy** directory.
 Run this command:
