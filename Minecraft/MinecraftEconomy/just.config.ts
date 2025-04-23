@@ -20,11 +20,11 @@ setupEnvironment(path.resolve(__dirname, ".env"));
 const projectName = getOrThrowFromProcess("PROJECT_NAME");
 const bundleTaskOptions: BundleTaskParameters = {
   entryPoint: path.join(__dirname, "./scripts/main.ts"),
-  external: ["@minecraft/server", "@minecraft/server-ui", "@minecraft/vanilla-data"],
+  external: ["@minecraft/server", "@minecraft/server-ui", ],
   outfile: path.resolve(__dirname, "./dist/scripts/main.js"),
   minifyWhitespace: false,
   sourcemap: true,
-  outputSourcemapPath: path.resolve(__dirname, "./dist/debug"),
+  outputSourcemapPath: path.resolve(__dirname, "./dist/debug")
 };
 const copyTaskOptions: CopyTaskParameters = {
   copyToBehaviorPacks: [`./behavior_packs/${projectName}`],
@@ -48,7 +48,7 @@ task(
   "local-deploy",
   watchTask(
     ["scripts/**/*.ts", "behavior_packs/**/*.{json,lang,tga,ogg,png}", "resource_packs/**/*.{json,lang,tga,ogg,png}"],
-    series("clean-local", "build", "package")
+    series("clean-local", "build", "package", )
   )
 );
 task("createMcaddonFile", mcaddonTask(mcaddonTaskOptions));
