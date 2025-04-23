@@ -1,9 +1,12 @@
 import { world, system, BlockPermutation, EntityInventoryComponent, PlayerBreakBlockAfterEvent, PlayerPlaceBlockAfterEvent, PlayerPlaceBlockAfterEventSignal, BlockInventoryComponent, Vector3, BlockVolumeBase, ListBlockVolume, BlockVolume } from "@minecraft/server";
 import { MinecraftBlockTypes, MinecraftDimensionTypes } from "@minecraft/vanilla-data";
 import { checkServerIdentity } from "tls";
+import { arrayUnique } from "./helpers/Utilities";
+
+const ADDON_DEBUG = false;
 
 let ticksSinceLoad = 0;
-let knownBlocks: {[id: string]: number} = {};
+let economy: {[id: string]: number} = {};
 let chestLocations: {x: number, y: number, z: number}[] = [];
 
 function mainTick() {
@@ -17,15 +20,38 @@ function mainTick() {
   } 
 
   if (ticksSinceLoad % 100 == 0) {
-   // scanInventories();
-    scanChests();
-    //world.sendMessage(`Total Blocks In Economy. ${JSON.stringify(knownBlocks, null, 4)}`);
+    let currentEconomy: { [id: string]: number } = {};
+
+    // Find and scan chests
+    findChests()
+    let chestItems = scanChests();
+    for (let item of chestItems) {
+      let modType = item.replace("minecraft:", "");
+
+      if (!(modType in economy)) {
+        currentEconomy[modType] = 1;
+      } else {
+        currentEconomy[modType] += 1;
+      }
+    }
+
+    // Scan players inventories
+    let playerInventoryItems = scanInventories();
+    for (let invItem in playerInventoryItems) {
+      if (!(invItem in currentEconomy)) {
+        currentEconomy[invItem] = playerInventoryItems[invItem];
+      } else {
+        currentEconomy[invItem] += playerInventoryItems[invItem];
+      }
+    }
+    economy = currentEconomy;
+    world.sendMessage(`Total Blocks In Economy. ${JSON.stringify(currentEconomy, null, 4)}`);
   }
 
   system.run(mainTick);
 }
 
-function scanChests() {
+function findChests() {
   let worldDimension = world.getDimension("overworld");
   // get players' location in order to calculate search radius
   let players = world.getAllPlayers();
@@ -38,15 +64,69 @@ function scanChests() {
     //world.sendMessage(`FROM: ${JSON.stringify(searchVolumeFrom, null, 4)}`);
     let searchVolume = new BlockVolume(searchVolumeFrom, searchVolumeTo);
     //world.sendMessage(`BLOCK VOLUME: ${JSON.stringify(searchVolume, null, 4)}`);
-    let chests = worldDimension.getBlocks(searchVolume, {includeTypes: [MinecraftBlockTypes.Chest]}, true);
+    let chests = worldDimension.getBlocks(searchVolume, { includeTypes: [MinecraftBlockTypes.Chest], }, true);
     //world.sendMessage(`Length of chest list: ${chests.getCapacity()}`)
     for (let chest of chests.getBlockLocationIterator()) {
       foundChests.push(chest);
-      world.sendMessage(`Chest at location x:${chest.x}, y: ${chest.y}, z:${chest.z}`);
+      
     }
   }
+  let tempArray = chestLocations.concat(foundChests);
+  chestLocations = arrayUnique(tempArray);
+  if (ADDON_DEBUG) {
+    world.sendMessage(`Chest found during scan: ${JSON.stringify(chestLocations, null, 4)}`);
+  }
+  
+}
 
-  world.sendMessage("Done scanning chests");
+function scanChests() {
+  let overworld = world.getDimension("overworld");
+  let chestBlocks = [];
+  for (let chest of chestLocations) {
+    let chestBlock = overworld.getBlock(chest);
+    if (chestBlock !== undefined) {
+      let chestInventory = chestBlock.getComponent("inventory");
+      if (chestInventory !== undefined) {
+        let chestContainer = chestInventory.container;
+        if (chestContainer !== undefined) {
+          for (let i = 0; i < chestContainer.size; i++) {
+            let inventoryItem = chestContainer.getItem(i);
+            if (inventoryItem !== undefined) {
+              chestBlocks.push(inventoryItem.typeId.replace("minecraft:", ""));
+            } else {
+              if (ADDON_DEBUG) {
+                world.sendMessage(`inventoryItem is null. chestContainer: ${JSON.stringify(inventoryItem, null, 4)}`);
+              }
+              
+            }
+          }
+        } else {
+          if (ADDON_DEBUG) {
+            world.sendMessage(`chestContainer is null. chestContainer: ${JSON.stringify(chestContainer, null, 4)}`);
+          }
+          
+        }
+      } else {
+        if (ADDON_DEBUG) {
+          world.sendMessage(`chestInventory is null. chestInventory: ${JSON.stringify(chestInventory, null, 4)}`);
+        }
+        
+      }
+    } else {
+      if (ADDON_DEBUG) {
+        world.sendMessage(`chestBlock is null. chest: ${JSON.stringify(chest, null, 4)}`);
+      }
+      
+    }
+
+    world.sendMessage(`Blocks in current economy: ${JSON.stringify(chestBlocks, null, 4)}`);
+  }
+  
+  if (ADDON_DEBUG) {
+    world.sendMessage("Done scanning chests");
+  }
+  
+  return chestBlocks;
 }
 
 function scanInventories() {
@@ -71,18 +151,12 @@ function scanInventories() {
       }
     }
     
-    knownBlocks = updatedKnownBlocks;
+    return updatedKnownBlocks;
   }
 }
 
 function playerPlaceBlockAfterCallback(event: PlayerPlaceBlockAfterEvent) {
   world.sendMessage("Block placed!");
-  let placedBlock = event.block;
-  if (placedBlock.typeId == MinecraftBlockTypes.Chest) {
-    world.sendMessage("Chest placed!! Saving location for scanning.")
-    chestLocations.push({ x: placedBlock.x, y: placedBlock.y, z: placedBlock.z});
-    saveChestData(placedBlock.x, placedBlock.y,  placedBlock.z );
-  }
 }
 
 function saveChestData(x: number, y: number, z: number) {
@@ -127,9 +201,7 @@ function saveData(key: string, data: string) {
 function initialize() {
   // Load local data if any
  // chestLocations = readSaveData("chestLocations.json");
- world.sendMessage("Getting saved data...");
- readChestData()
-  world.sendMessage("End saved data retrieval...");
+
   world.afterEvents.playerPlaceBlock.subscribe(playerPlaceBlockAfterCallback)
   
 }
