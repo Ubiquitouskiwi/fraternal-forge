@@ -4,6 +4,8 @@ import { arrayUnique } from "./helpers/Utilities";
 
 const ADDON_DEBUG = true;
 const SEARCH_VOLUME_DELTA = 250;
+const SHORT_WORKLOAD_TIME = 100;
+const LONG_WORKLOAD_TIME = 500;
 
 let ticksSinceLoad = 0;
 let chestLocations: Vector3[] = [];
@@ -14,17 +16,16 @@ function mainTick() {
   // Keep track of in game time ticks
   ticksSinceLoad++;
   
-  if (ticksSinceLoad % 100 == 0 && once) {
+  if (ticksSinceLoad % SHORT_WORKLOAD_TIME == 0 && once) {
     once = false
     world.sendMessage("Hello starter! Tick: " + system.currentTick);
     initialize();
   } 
 
-  if (ticksSinceLoad % 100 == 0) {
+  // Quick workloads
+  if (ticksSinceLoad % SHORT_WORKLOAD_TIME == 0) {
     let currentEconomy: { [id: string]: number } = {};
 
-    // Find and scan chests
-    chestLocations = findChests()
     let chestItems = scanChests();
     for (let item of chestItems) {
       if (item in currentEconomy) {
@@ -44,6 +45,12 @@ function mainTick() {
       }
     }
     world.sendMessage(`Total Blocks In Economy. ${JSON.stringify(currentEconomy, null, 4)}`)
+  }
+
+  // Longer work loads
+  if (ticksSinceLoad % LONG_WORKLOAD_TIME == 0) {
+    // Find and scan chests
+    chestLocations = findChests()
   }
   system.run(mainTick);
 }
