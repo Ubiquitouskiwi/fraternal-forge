@@ -1,11 +1,13 @@
-export function arrayUnique(array: any[]) {
-    var a = array.concat();
-    for (var i = 0; i < a.length; ++i) {
-        for (var j = i + 1; j < a.length; ++j) {
-            if (a[i] === a[j])
-                a.splice(j--, 1);
+import { ListBlockVolume, Vector3 } from "@minecraft/server";
+
+export function arrayUnique(array_one: Vector3[], array_two: Vector3[]) {
+    let blockList_two: ListBlockVolume = new ListBlockVolume(array_two);
+    let new_array = array_two;
+    for (let item of array_one) {
+        if (!(blockList_two.isInside(item))) {
+            array_two.push(item);
         }
     }
 
-    return a;
+    return new_array;
 }
