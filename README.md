@@ -15,18 +15,15 @@ These are the Mods/Addons we have ideas for or are actively working on. This lis
 
 ## Minecraft
 
-- [Practice Addon](/Minecraft/PracticeAddon/README.md)
-    - Practice addon that has no direction or concept, just a playground to test ideas and theories
-
 - [Minecaft Economy](https://github.com/Ubiquitouskiwi/MinecraftEconomyAddon)
     - Addon that creates an economy that is based on live availability of resources in the world. It allows trades between players as well as a commodaties market.
 
-## Cities Skylines
+<!-- ## Cities Skylines
 
 - [Practice Mod](/CitiesSkylines/PracticeMod/README.md)
     - Practice mod that has no direction or concept, just a playground to test ideas and theories
 
 - [Surname Mod](/CitiesSkylines/SurnameMod/README.md)
-    - Mod that adds surnames to familes to add geneology to the game.
+    - Mod that adds surnames to familes to add geneology to the game. -->
 
 
