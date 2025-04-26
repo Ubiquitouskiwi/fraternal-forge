@@ -13,7 +13,7 @@ Welcome to Fraternal Forge Studios. This studio was born out of boredom with the
 
 These are the Mods/Addons we have ideas for or are actively working on. This list will grow with time and as our skill grow and our interests shift.
 
-## Minecraft
+## [Minecraft](/Minecraft/README.md)
 
 - [Minecaft Economy](https://github.com/Ubiquitouskiwi/MinecraftEconomyAddon)
     - Addon that creates an economy that is based on live availability of resources in the world. It allows trades between players as well as a commodaties market.
