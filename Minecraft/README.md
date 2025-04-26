@@ -1,3 +1,8 @@
+# Projects
+
+- [Minecaft Economy](https://github.com/Ubiquitouskiwi/MinecraftEconomyAddon)
+    - Addon that creates an economy that is based on live availability of resources in the world. It allows trades between players as well as a commodaties market.
+
 # Development Setup
 
 ### Needed Downloads
