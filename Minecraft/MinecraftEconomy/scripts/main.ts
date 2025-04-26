@@ -4,8 +4,8 @@ import { arrayUnique } from "./helpers/Utilities";
 
 const ADDON_DEBUG = true;
 const SEARCH_VOLUME_DELTA = 250;
-const SHORT_WORKLOAD_TIME = 100;
-const LONG_WORKLOAD_TIME = 500;
+const SHORT_WORKLOAD_TIME = 250;
+const LONG_WORKLOAD_TIME = 1000;
 
 let ticksSinceLoad = 0;
 let chestLocations: Vector3[] = [];
@@ -18,12 +18,13 @@ function mainTick() {
   
   if (ticksSinceLoad % SHORT_WORKLOAD_TIME == 0 && once) {
     once = false
-    world.sendMessage("Hello starter! Tick: " + system.currentTick);
+    world.sendMessage("Initializing economy...")
     initialize();
   } 
 
   // Quick workloads
   if (ticksSinceLoad % SHORT_WORKLOAD_TIME == 0) {
+    world.sendMessage("Scanning for economy...")
     let currentEconomy: { [id: string]: number } = {};
 
     let chestItems = scanChests();
@@ -44,14 +45,19 @@ function mainTick() {
         currentEconomy[item] = 1;
       }
     }
-    world.sendMessage(`Total Blocks In Economy. ${JSON.stringify(currentEconomy, null, 4)}`)
+
+    if (ADDON_DEBUG) {
+      world.sendMessage(`Blocks in economy: ${JSON.stringify(currentEconomy, null, 4)}`)
+    }
   }
 
   // Longer work loads
   if (ticksSinceLoad % LONG_WORKLOAD_TIME == 0) {
+    world.sendMessage("Scanning for storage blocks...")
     // Find and scan chests
     chestLocations = findChests()
   }
+
   system.run(mainTick);
 }
 

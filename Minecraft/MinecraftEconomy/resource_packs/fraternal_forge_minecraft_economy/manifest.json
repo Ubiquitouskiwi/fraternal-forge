@@ -28,14 +28,7 @@
     }
   ],
   "dependencies": [
-    {
-      "uuid": "77037ec3-3a9b-4063-8913-ab8a6da46f0b",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    }
+   
   ],
   "metadata": {
     "generated_with": {
